@@ -114,7 +114,7 @@ def hangman(secretWord):
     """
     guesses = 7
     lettersGuessed = []
-    winner = False
+    # winner = False
 
     print("Welcome to the game, Hangman!")
     print("I am thinking of a word that is", str(len(secretWord)), "letters long.")
@@ -135,7 +135,8 @@ def hangman(secretWord):
             lettersGuessed.append(guess)
             print("Good guess:", getGuessedWord(secretWord, lettersGuessed))
             if isWordGuessed(secretWord, lettersGuessed):
-                winner = True
+                # winner = True
+                return
 
     print('-------------')
     if winner:
