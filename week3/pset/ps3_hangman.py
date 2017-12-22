@@ -119,7 +119,7 @@ def hangman(secretWord):
     print("Welcome to the game, Hangman!")
     print("I am thinking of a word that is", str(len(secretWord)), "letters long.")
     # print("Word is >", secretWord)  # this for debugging
-    while guesses >= 0 and winner == False:
+    while guesses >= 0 and not isWordGuessed(secretWord, lettersGuessed):
         print("-------------")
         print("You have", str(guesses + 1), "guesses left")
         print("Available Letters:", getAvailableLetters(lettersGuessed))
