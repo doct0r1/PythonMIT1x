@@ -55,6 +55,10 @@ def get_story_string():
 
 WORDLIST_FILENAME = 'words.txt'
 
+def decrypt_story():
+    jokeCode = CiphertextMessage(get_story_string())
+    return jokeCode.decrypt_message()
+
 class Message(object):
     ### DO NOT MODIFY THIS METHOD ###
     def __init__(self, text):
@@ -217,7 +221,9 @@ class CiphertextMessage(Message):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         """
-        
+        super().__init__(text)
+        self.message_text = text
+        self.valid_words = self.get_valid_words()
 
     def decrypt_message(self):
         """
@@ -235,7 +241,20 @@ class CiphertextMessage(Message):
         Returns: a tuple of the best shift value used to decrypt the message
         and the decrypted message text using that shift value
         """
-        pass #delete this line and replace with your code here
+        currentShift = 0
+        bestShift = 0
+        shiftVal = 0
+        decryptedMsg = ""
+        for i in range(26):
+            for word in list(super(CiphertextMessage, self).apply_shift(i).split(" ")):
+                if is_word(self.valid_words, word):
+                    currentShift += 1
+            if bestShift < currentShift:
+                currentShift = bestShift
+                shiftVal = i
+                decryptedMsg = super(CiphertextMessage, self).apply_shift(i)
+        return shiftVal, decryptedMsg
+
 
 #Example test case (PlaintextMessage)
 plaintext = PlaintextMessage('hello', 2)
