@@ -22,7 +22,7 @@ class Person(object):
     def getAge(self):
         # assumes that self's age has been set
         # returns self's current age in years
-        if self.age == None:
+        if self.age is None:
             raise ValueError
         return self.age
 
@@ -53,16 +53,16 @@ class USResident(Person):
         super().__init__(name)
         self.status = status
 
-
     def getStatus(self):
         """
         Returns the status
         """
-        if self.status == "citizen":
-            return "citizen"
-        elif self.status == "legal_resident":
-            return "legal_resident"
-        elif self.status == "illegal_resident":
-            return "illegal_resident"
-        else:
+        try:
+            if self.status == "citizen":
+                return "citizen"
+            elif self.status == "legal_resident":
+                return "legal_resident"
+            elif self.status == "illegal_resident":
+                return "illegal_resident"
+        except:
             raise ValueError
