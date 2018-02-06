@@ -50,8 +50,14 @@ class USResident(Person):
         status: a string, one of "citizen", "legal_resident", "illegal_resident"
         Raises a ValueError if status is not one of those 3 strings
         """
-        self.__init__().name = name
+        Person.name = name
         self.status = status
+
+
+    def getStatus(self):
+        """
+        Returns the status
+        """
         if self.status == "citizen":
             return "citizen"
         elif self.status == "legal_resident":
@@ -60,9 +66,3 @@ class USResident(Person):
             return "illegal_resident"
         else:
             raise ValueError
-
-    def getStatus(self):
-        """
-        Returns the status
-        """
-        return self.status
