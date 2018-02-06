@@ -50,7 +50,7 @@ class USResident(Person):
         status: a string, one of "citizen", "legal_resident", "illegal_resident"
         Raises a ValueError if status is not one of those 3 strings
         """
-        Person.name = name
+        super().__init__(name)
         self.status = status
 
 
